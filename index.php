@@ -42,7 +42,7 @@ $refeicoes = Refeicao::listarTodas();
         <li><a class="dropdown-item" href="#">Relatório</a></li>
         <li><a class="dropdown-item" href="#">Meu Perfil</a></li>
         <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="#">Sair</a></li>
+        <li><a class="dropdown-item" href="LoginIndex.php">Sair</a></li>
       </ul>
       </div>
     </nav>
@@ -104,7 +104,6 @@ $refeicoes = Refeicao::listarTodas();
                 </table>
                 <div class="d-flex gap-2">
                   <button class="btn btn-sm btn-outline-success">Editar</button>
-                  <button class="btn btn-sm btn-outline-primary">Expandir</button>
                 </div>
               </div>
             <?php endforeach; ?>
@@ -144,7 +143,6 @@ $refeicoes = Refeicao::listarTodas();
             <div class="progress">
               <div class="progress-bar" role="progressbar" style="width: 75%;"></div>
             </div>
-            <small class="text-muted">Mais 2.500 passos para bater sua meta de 10.000!</small>
           </div>
         </div>
       </div>

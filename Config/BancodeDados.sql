@@ -4,9 +4,8 @@ CREATE TABLE usuarios (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
-    data_nascimento DATE,
-    peso DECIMAL(5, 2),
-    altura DECIMAL(3, 2)
+    data_nascimento VARCHAR(250),
+    senha VARCHAR(250)
 );
 
 

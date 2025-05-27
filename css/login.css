@@ -1,0 +1,143 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f3f8f5;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: #fff;
+    width: 900px;
+    max-width: 100%;
+    min-height: 500px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    display: flex;
+    overflow: hidden;
+}
+
+.form-container {
+    flex: 1;
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2e7d32;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.social-icons a {
+    height: 40px;
+    width: 40px;
+    margin: 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    color: #2e7d32;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.social-icons a:hover {
+    background-color: #e0f2f1;
+}
+
+span {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.input-group i {
+    color: #777;
+    margin-right: 10px;
+}
+
+.input-group input {
+    border: none;
+    outline: none;
+    background: transparent;
+    flex: 1;
+    font-size: 16px;
+}
+
+button {
+    padding: 12px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+    margin-top: 10px;   
+}
+
+button:hover {
+    background-color: #388e3c;
+}
+
+.overlay {
+    background-color: #2e7d32;
+    color: white;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 40px;
+}
+
+.overlay h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.overlay p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.ghost {
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    transition: 0.3s;
+}
+
+.ghost:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
