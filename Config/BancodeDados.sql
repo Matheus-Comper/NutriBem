@@ -1,7 +1,17 @@
 create database nutri_bem;
 
-create table refeicao(
-	id INT AUTO_INCREMENT primary key ,
+CREATE TABLE usuarios (
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    data_nascimento DATE,
+    peso DECIMAL(5, 2),
+    altura DECIMAL(3, 2)
+);
+
+
+CREATE TABLE refeicao (
+    id INT AUTO_INCREMENT PRIMARY KEY,
     tipo varchar(250),
     descricao varchar(250),
     proteina varchar(250),
