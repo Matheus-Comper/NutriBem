@@ -1,5 +1,21 @@
 <?php
-    include "Login.php";
+    require_once 'Config/Conexao.php';
+    require_once 'classes/Usuario.class.php';
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $refeicao = new Refeicao(
+        $_POST['nome'],
+        $_POST['email'],
+        $_POST['senha'],
+        $_POST['dataNasc'],
+        $_POST['sexo']
+    );
+    $refeicao->salvar();
+    header('Location: ' . $_SERVER['PHP_SELF']);
+    exit;
+    }
+
+$refeicoes = Refeicao::listarTodas();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,11 +25,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="Login.php" method="post">
-
-        <input type="text" name="id" id="id">
-
-        <br>
+    <form method="post">
 
         <label for="nome">Nome Completo</label>
         <input type="text" name="nome" id="nome">
@@ -50,20 +62,5 @@
         <button type="reset" name="acao" value="cancel">Cancelar</button>
     </form>
 
-    <table border="1">
-        <th>Id</th>
-        <th>Peso</th>
-        <th>Descrição</th>
-        <th>Anexo</th>
-        <?php
-            require_once "Login.class.php";
-
-            //$lista = Atividade::listar(); 
-            foreach($lista as $login){
-                echo "<tr><td><a href='index.php?id={$login['id']}'>{$login['id']}</td><td>{$login['nome']}</a>
-                </td><td>{$login['email']}</td><td>{$login['senha']}</td><td>{$login['dataNasc']}</td></tr>";
-            }
-        ?>
-    </table>
 </body>
 </html>

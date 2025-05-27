@@ -1,0 +1,33 @@
+body { 
+      background-color: #f2f6f5; 
+      color: #333; 
+    }
+    header { 
+      background-color: #4CAF50; 
+      color: white; 
+      padding: 20px 40px; 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+    }
+    nav a { 
+      color: white;
+      text-decoration: none; 
+      margin-left: 20px; 
+      font-weight: bold; 
+    }
+    .dashboard { 
+      padding: 40px; 
+    }
+    .dashboard h2 { 
+      margin-bottom: 20px; 
+      color: #4CAF50; 
+    }
+    .progress-bar { 
+      background-color: #4CAF50; 
+    }
+    .card-header { 
+      background-color: #e9f5eb; 
+      font-weight: bold;
+      color: #4CAF50; 
+    }
