@@ -23,18 +23,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     die('Alimento não encontrado.');
   }
 
-  // Calcula os nutrientes com base na quantidade informada
   $fator = $quantidade / 100;
   $proteina = $alimento['proteina'] * $fator;
   $carboidrato = $alimento['carboidrato'] * $fator;
   $gordura = $alimento['gordura'] * $fator;
   $calorias = $alimento['calorias'] * $fator;
 
-  // Insere a refeição no banco
   $stmt = $pdo->prepare("INSERT INTO refeicao (descricao, proteina, carboidrato, gordura, calorias) VALUES (?, ?, ?, ?, ?)");
   $stmt->execute([$tipo, $proteina, $carboidrato, $gordura, $calorias]);
 
-  // Redireciona para o dashboard
   header("Location: ../index.php");
   exit;
 } else {

@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_POST['calorias']
   ]);
 
-  header("Location: index.php");
+  header("Location: ../index.php");
   exit;
 }
 ?>

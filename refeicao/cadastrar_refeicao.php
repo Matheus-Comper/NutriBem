@@ -9,10 +9,29 @@ $alimentos = Alimento::listarTodos();
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Cadastrar Refeição - Nutribem</title>
+  <title>Cadastrar Refeição</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+
 </head>
 <body>
+<header class="bg-success text-white border-bottom mb-4 py-3">
+  <div class="container d-flex justify-content-between align-items-center">
+    <h1 class="h4 m-0">NUTRIBEM</h1>
+    <div class="dropdown">
+      <button class="btn btn-light text-success dropdown-toggle" type="button" id="menuDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        Menu
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end">
+        <li><a class="dropdown-item" href="#">Exercícios</a></li>
+        <li><a class="dropdown-item" href="#">Relatório</a></li>
+        <li><a class="dropdown-item" href="#">Meu Perfil</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="LoginIndex.php">Sair</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
 <div class="container mt-5">
   <h2>Cadastrar Nova Refeição</h2>
   <form action="salvar_refeicao.php" method="post">

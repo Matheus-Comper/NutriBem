@@ -11,39 +11,29 @@ $refeicoes = Refeicao::listarTodasComAlimentos();
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Dashboard - Nutribem</title>
-  <link rel="stylesheet" href="css/index.css">
+  <title>Nutribem</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+
 </head>
 <body>
-  <header>
-    <center><strong>NUTRIBEM</strong></center>
-    <nav>
-      <div class="btn-group">
-        <button type="button" class="btn btn-secondary">Menu</button>
-        <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-          <span class="visually-hidden">Toggle Dropdown</span>
-        </button>
-<<<<<<< HEAD
-        <ul class="dropdown-menu">
-
-          <li><a class="dropdown-item" href="#">Relatório</a></li>
-          <li><a class="dropdown-item" href="#">Meu Perfil</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#">Sair</a></li>
-        </ul>
-=======
-      <ul class="dropdown-menu">
+<header class="bg-success text-white border-bottom mb-4 py-3">
+  <div class="container d-flex justify-content-between align-items-center">
+    <h1 class="h4 m-0">NUTRIBEM</h1>
+    <div class="dropdown">
+      <button class="btn btn-light text-success dropdown-toggle" type="button" id="menuDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        Menu
+      </button>
+      <ul class="dropdown-menu dropdown-menu-end">
         <li><a class="dropdown-item" href="#">Exercícios</a></li>
         <li><a class="dropdown-item" href="#">Relatório</a></li>
         <li><a class="dropdown-item" href="#">Meu Perfil</a></li>
-        <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="LoginIndex.php">Sair</a></li>
+        <li><a class="dropdown-item" href="Crud/cadastro.php">Sair</a></li>
       </ul>
->>>>>>> c22026e9a635b86f53f06c681548e514f9747d16
-      </div>
-    </nav>
-  </header>
+    </div>
+  </div>
+</header>
+
   <div class="container mt-5">
     <h2>Refeições do Dia</h2>
     <br>
@@ -57,7 +47,7 @@ $refeicoes = Refeicao::listarTodasComAlimentos();
       <div class="col-md-6">
         <?php foreach ($refeicoes as $r): ?>
           <div class="mb-4">
-            <strong>Refeição:</strong> <?= htmlspecialchars($r['descricao'] ?? '') ?>
+            <strong>Refeição:</strong> <?= htmlspecialchars($r['refeicao'] ?? '') ?>
 
             <?php if (!empty($r['alimentos'])): ?>
               <span> | <strong>Alimentos:</strong>
@@ -67,7 +57,6 @@ $refeicoes = Refeicao::listarTodasComAlimentos();
               </span>
             <?php endif; ?>
 
-<<<<<<< HEAD
             <table class="table table-sm table-bordered mt-2">
               <thead class="table-light">
                 <tr><th>Proteína</th><th>Carboidrato</th><th>Gordura</th><th>Calorias</th></tr>
@@ -88,29 +77,6 @@ $refeicoes = Refeicao::listarTodasComAlimentos();
                 Excluir
               </a>
             </div>
-=======
-    <div class="row mt-4">
-      <div class="col-md-6">
-        <div class="card mb-3">
-          <div class="card-header">Refeições do Dia</div>
-          <div class="card-body">
-            <?php foreach ($refeicoes as $r): ?>
-              <div class="mb-3">
-                <strong><?= htmlspecialchars($r['tipo']) ?>:</strong> <?= htmlspecialchars($r['descricao']) ?>
-                <table class="table table-sm table-bordered mt-2">
-                  <thead class="table-light">
-                    <tr><th>Proteína</th><th>Carboidrato</th><th>Gordura</th><th>Calorias</th></tr>
-                  </thead>
-                  <tbody>
-                    <tr><td><?= $r['proteina'] ?>g</td><td><?= $r['carboidrato'] ?>g</td><td><?= $r['gordura'] ?>g</td><td><?= $r['calorias'] ?> kcal</td></tr>
-                  </tbody>
-                </table>
-                <div class="d-flex gap-2">
-                  <button class="btn btn-sm btn-outline-success">Editar</button>
-                </div>
-              </div>
-            <?php endforeach; ?>
->>>>>>> c22026e9a635b86f53f06c681548e514f9747d16
           </div>
         <?php endforeach; ?>                                          
       </div>
