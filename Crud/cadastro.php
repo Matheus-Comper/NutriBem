@@ -3,6 +3,7 @@
     require_once 'classes/Usuario.class.php';
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+<<<<<<< HEAD:Crud/cadastro.php
         $usuario = new usuario(
             $_POST['nome'],
             $_POST['email'],
@@ -10,52 +11,74 @@
             $_POST['dataNasc'],
             $_POST['sexo']
         );
+=======
+    $refeicao = new Refeicao(
+        $_POST['nome'],
+        $_POST['email'],
+        $_POST['senha'],
+        $_POST['dataNasc'],
+        $_POST['sexo'],
+        $_POST['confirmSenha']
+    );
+    $refeicao->salvar();
+    header('Location: ' . $_SERVER['PHP_SELF']);
+    exit;
+>>>>>>> c22026e9a635b86f53f06c681548e514f9747d16:LoginIndex.php
     }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <title>Cadastro | Nutribem</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
-    <form method="post">
+    <div class="container">
+        <div class="form-container sign-up">
+            <form method="post">
+                <h2>Criar Conta</h2>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>ou use seu e-mail para se registrar:</span>
 
-        <label for="nome">Nome Completo</label>
-        <input type="text" name="nome" id="nome">
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" name="nome" placeholder="Nome completo" required>
+                </div>
 
-        <br>
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" name="email" placeholder="Email" required>
+                </div>
 
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email">
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" name="senha" placeholder="Senha" required>
+                </div>
 
-        <br>
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" name="confirmSenha" placeholder="Confirmar Senha" required>
+                </div>
 
-        <label for="senha">Senha</label>
-        <input type="password" name="senha" id="senha">
+                <center><button type="submit" name="acao" value="salvar" class="cadastro">Cadastrar</button></center>
+            </form>
+        </div>
 
-        <br>
-
-        <label for="dataNasc">Data de Nascimento</label>
-        <input type="text" name="dataNasc" id="dataNasc">
-
-        <br>
-
-        <label for="sexo">Sexo</label>
-        <Select>
-            <option value="0" selected>Selecione</option>
-            <option value="masc">Masculino</option>
-            <option value="femi">Feminino</option>
-            <option value="ndizer">Prefiro não informar</option>
-        </Select>
-
-        <br>
-
-        <button type="submit" name="acao" value="salvar">Salvar</button>
-        <button type="submit" name="acao" value="excluir">Excluir</button>
-        <button type="reset" name="acao" value="cancel">Cancelar</button>
-    </form>
-
+        <div class="form-container overlay">
+            <div class="overlay-panel">
+                <h2>Bem-vindo de volta!</h2>
+                <p>Para continuar conectado, faça login com suas informações</p>
+                <a href="login.php"><button class="ghost">Entrar</button></a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
+

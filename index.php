@@ -24,6 +24,7 @@ $refeicoes = Refeicao::listarTodasComAlimentos();
         <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
           <span class="visually-hidden">Toggle Dropdown</span>
         </button>
+<<<<<<< HEAD
         <ul class="dropdown-menu">
 
           <li><a class="dropdown-item" href="#">Relatório</a></li>
@@ -31,6 +32,15 @@ $refeicoes = Refeicao::listarTodasComAlimentos();
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" href="#">Sair</a></li>
         </ul>
+=======
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Exercícios</a></li>
+        <li><a class="dropdown-item" href="#">Relatório</a></li>
+        <li><a class="dropdown-item" href="#">Meu Perfil</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="LoginIndex.php">Sair</a></li>
+      </ul>
+>>>>>>> c22026e9a635b86f53f06c681548e514f9747d16
       </div>
     </nav>
   </header>
@@ -57,6 +67,7 @@ $refeicoes = Refeicao::listarTodasComAlimentos();
               </span>
             <?php endif; ?>
 
+<<<<<<< HEAD
             <table class="table table-sm table-bordered mt-2">
               <thead class="table-light">
                 <tr><th>Proteína</th><th>Carboidrato</th><th>Gordura</th><th>Calorias</th></tr>
@@ -77,6 +88,29 @@ $refeicoes = Refeicao::listarTodasComAlimentos();
                 Excluir
               </a>
             </div>
+=======
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <div class="card mb-3">
+          <div class="card-header">Refeições do Dia</div>
+          <div class="card-body">
+            <?php foreach ($refeicoes as $r): ?>
+              <div class="mb-3">
+                <strong><?= htmlspecialchars($r['tipo']) ?>:</strong> <?= htmlspecialchars($r['descricao']) ?>
+                <table class="table table-sm table-bordered mt-2">
+                  <thead class="table-light">
+                    <tr><th>Proteína</th><th>Carboidrato</th><th>Gordura</th><th>Calorias</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td><?= $r['proteina'] ?>g</td><td><?= $r['carboidrato'] ?>g</td><td><?= $r['gordura'] ?>g</td><td><?= $r['calorias'] ?> kcal</td></tr>
+                  </tbody>
+                </table>
+                <div class="d-flex gap-2">
+                  <button class="btn btn-sm btn-outline-success">Editar</button>
+                </div>
+              </div>
+            <?php endforeach; ?>
+>>>>>>> c22026e9a635b86f53f06c681548e514f9747d16
           </div>
         <?php endforeach; ?>                                          
       </div>
@@ -110,7 +144,6 @@ $refeicoes = Refeicao::listarTodasComAlimentos();
             <div class="progress">
               <div class="progress-bar" role="progressbar" style="width: 75%;"></div>
             </div>
-            <small class="text-muted">Mais 2.500 passos para bater sua meta de 10.000!</small>
           </div>
         </div>
       </div>
