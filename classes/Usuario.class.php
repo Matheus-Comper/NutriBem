@@ -17,7 +17,7 @@ class Refeicao {
   }
 
   public function salvar() {
-    $pdo = Conexao::conectar();
+    $pdo = Conexao::getConexao();
     $sql = "INSERT INTO usuarios (nome, email, senha, dataNasc, sexo) 
             VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $pdo->prepare($sql);
@@ -31,9 +31,10 @@ class Refeicao {
   }
 
   public static function listarTodas() {
-    $pdo = Conexao::conectar();
+    $pdo = Conexao::getConexao();
     $sql = "SELECT * FROM usuarios ORDER BY id DESC";
     $stmt = $pdo->query($sql);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 }
+?>

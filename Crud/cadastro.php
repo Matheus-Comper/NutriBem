@@ -3,19 +3,14 @@
     require_once 'classes/Usuario.class.php';
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $refeicao = new Refeicao(
-        $_POST['nome'],
-        $_POST['email'],
-        $_POST['senha'],
-        $_POST['dataNasc'],
-        $_POST['sexo']
-    );
-    $refeicao->salvar();
-    header('Location: ' . $_SERVER['PHP_SELF']);
-    exit;
+        $usuario = new usuario(
+            $_POST['nome'],
+            $_POST['email'],
+            $_POST['senha'],
+            $_POST['dataNasc'],
+            $_POST['sexo']
+        );
     }
-
-$refeicoes = Refeicao::listarTodas();
 ?>
 <!DOCTYPE html>
 <html lang="en">

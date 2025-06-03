@@ -5,7 +5,7 @@ class Conexao {
   private static $user = 'root';
   private static $pass = '';
 
-  public static function conectar() {
+  public static function getConexao() {
     try {
       $pdo = new PDO("mysql:host=" . self::$host . ";dbname=" . self::$dbname, self::$user, self::$pass);
       $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -15,3 +15,4 @@ class Conexao {
     }
   }
 }
+?>
