@@ -1,6 +1,6 @@
 <?php
-require_once 'Config/Conexao.php';
-require_once 'classes/refeicao.class.php';
+require_once ('Config/Conexao.php');
+require_once ('classes/refeicao.class.php');
 
 $refeicoes = Refeicao::listarTodasComAlimentos();
 
@@ -49,10 +49,10 @@ $refeicoes = Refeicao::listarTodasComAlimentos();
           <div class="mb-4">
             <strong>Refeição:</strong> <?= htmlspecialchars($r['refeicao'] ?? '') ?>
 
-            <?php if (!empty($r['alimentos'])): ?>
+            <?php if (!empty($r['alimento_id'])): ?>
               <span> | <strong>Alimentos:</strong>
-                <?php foreach ($r['alimentos'] as $index => $alimento): ?>
-                  <?= htmlspecialchars($alimento['nome']) ?> (<?= $alimento['quantidade'] ?>g)<?= $index < count($r['alimentos']) - 1 ? ',' : '' ?>
+                <?php foreach ($r['alimento_id'] as $index => $alimento): ?>
+                  <?= htmlspecialchars($alimento['nome']) ?> (<?= $alimento['quantidade'] ?>g)<?= $index < count($r['alimento_id']) - 1 ? ',' : '' ?>
                 <?php endforeach; ?>
               </span>
             <?php endif; ?>
@@ -72,7 +72,7 @@ $refeicoes = Refeicao::listarTodasComAlimentos();
             </table>
 
             <div class="d-flex gap-2">
-              <a href="excluir_refeicao.php?id=<?= $r['id'] ?>" class="btn btn-sm btn-outline-danger"
+              <a href="refeicao/excluir_refeicao.php?id=<?= $r['id'] ?>" class="btn btn-sm btn-outline-danger"
                 onclick="return confirm('Tem certeza que deseja excluir esta refeição?')">
                 Excluir
               </a>

@@ -1,5 +1,7 @@
 <?php
-require_once 'Config/Conexao.php';
+
+require_once(__DIR__ . '/../Config/Conexao.php');
+
 
 class Refeicao {
   public $tipo;

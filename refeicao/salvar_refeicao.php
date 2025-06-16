@@ -1,12 +1,16 @@
 <?php
 require_once '../Config/Conexao.php';
 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $tipo = $_POST['tipo'] ?? '';
-  $alimento_id = $_POST['alimento_id'] ?? '';
+  $alimento_id = $_POST['alimento_id'] ?? "";
   $quantidade = $_POST['quantidade'] ?? 0;
 
-  // Verifica se os campos estão preenchidos corretamente
+  echo '<pre>';
+  print_r($_POST);
+  echo '</pre>';
+  
   if (empty($tipo) || empty($alimento_id) || $quantidade <= 0) {
     die('Dados inválidos. Volte e tente novamente.');
   }
