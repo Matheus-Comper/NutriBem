@@ -45,40 +45,58 @@ $refeicoes = Refeicao::listarTodasComAlimentos();
     <br>
     <div class="row">
       <div class="col-md-6">
-        <?php foreach ($refeicoes as $r): ?>
-          <div class="mb-4">
-            <strong>Refeição:</strong> <?= htmlspecialchars($r['refeicao'] ?? '') ?>
-
-            <?php if (!empty($r['alimento_id'])): ?>
-              <span> | <strong>Alimentos:</strong>
-                <?php foreach ($r['alimento_id'] as $index => $alimento): ?>
-                  <?= htmlspecialchars($alimento['nome']) ?> (<?= $alimento['quantidade'] ?>g)<?= $index < count($r['alimento_id']) - 1 ? ',' : '' ?>
-                <?php endforeach; ?>
-              </span>
-            <?php endif; ?>
-
-            <table class="table table-sm table-bordered mt-2">
-              <thead class="table-light">
-                <tr><th>Proteína</th><th>Carboidrato</th><th>Gordura</th><th>Calorias</th></tr>
-              </thead>
-              <tbody>
+      <?php foreach ($refeicoes as $r): ?>
+        <div class="mb-4">
+          <strong>Refeição:</strong> <?= htmlspecialchars($r['refeicao'] ?? '') ?>
+          
+          <table class="table table-sm table-bordered mt-2">
+            <thead class="table-light">
+              <tr>
+                <th>Alimento</th>
+                <th>Quantidade</th>
+                <th>Proteína (g)</th>
+                <th>Carboidrato (g)</th>
+                <th>Gordura (g)</th>
+                <th>Calorias (kcal)</th>
+              </tr>
+            </thead>
+            <tbody>
+            <?php if (!empty($r['alimento_id']) && is_array($r['alimento_id'])): ?>
+              <?php foreach ($r['alimento_id'] as $alimento): ?>
                 <tr>
-                  <td><?= $r['proteina'] ?>g</td>
-                  <td><?= $r['carboidrato'] ?>g</td>
-                  <td><?= $r['gordura'] ?>g</td>
-                  <td><?= $r['calorias'] ?> kcal</td>
+                  <td><?= htmlspecialchars($alimento['nome']) ?></td>
+                  <td><?= $alimento['quantidade'] ?>g</td>
+                  <td><?= $alimento['proteina'] ?>g</td>
+                  <td><?= $alimento['carboidrato'] ?>g</td>
+                  <td><?= $alimento['gordura'] ?>g</td>
+                  <td><?= $alimento['calorias'] ?> kcal</td>
                 </tr>
-              </tbody>
-            </table>
+              <?php endforeach; ?>
+              <?php else: ?>
+                <tr>
+                  <td colspan="6">Nenhum alimento registrado para esta refeição.</td>
+                </tr>
+              <?php endif; ?>  
+              
+              <tr class="table-success fw-bold">
+                <td colspan="2">Total</td>
+                <td><?= $r['proteina'] ?>g</td>
+                <td><?= $r['carboidrato'] ?>g</td>
+                <td><?= $r['gordura'] ?>g</td>
+                <td><?= $r['calorias'] ?> kcal</td>
+              </tr>
+            </tbody>
+          </table>
 
-            <div class="d-flex gap-2">
-              <a href="refeicao/excluir_refeicao.php?id=<?= $r['id'] ?>" class="btn btn-sm btn-outline-danger"
-                onclick="return confirm('Tem certeza que deseja excluir esta refeição?')">
-                Excluir
-              </a>
-            </div>
+          <div class="d-flex gap-2">
+            <a href="refeicao/excluir_refeicao.php?id=<?= $r['id'] ?>" class="btn btn-sm btn-outline-danger"
+              onclick="return confirm('Tem certeza que deseja excluir esta refeição?')">
+              Excluir
+            </a>
           </div>
-        <?php endforeach; ?>                                          
+        </div>
+      <?php endforeach; ?>
+                                          
       </div>
 
       <div class="col-md-6">
