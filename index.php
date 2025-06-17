@@ -27,7 +27,7 @@ $refeicoes = Refeicao::listarTodasComAlimentos();
       <ul class="dropdown-menu dropdown-menu-end">
         <li><a class="dropdown-item" href="#">Exercícios</a></li>
         <li><a class="dropdown-item" href="#">Relatório</a></li>
-        <li><a class="dropdown-item" href="#">Meu Perfil</a></li>
+        <li><a class="dropdown-item" href="Meuperfil.php">Meu Perfil</a></li>
         <li><a class="dropdown-item" href="Crud/cadastro.php">Sair</a></li>
       </ul>
     </div>
