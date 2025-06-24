@@ -29,13 +29,15 @@
       <div class="perfil-img">
         <i class="bi bi-person-fill"></i>
       </div>
+      
       <div class="perfil-nome">NOME USUÁRIO</div>
       <div class="perfil-email">lucasxumbaca1234@gmail.com</div>
-
+<br>
       <div class="perfil-item">Meus Dados</div>
       <div class="perfil-item">Sobre Nós</div>
       <div class="perfil-item">Configurações</div>
       <div class="perfil-item">Ajuda</div>
+      <a href="index.php"><div class="perfil-item">Sair</div></a>
     </div>
   </div>
 
