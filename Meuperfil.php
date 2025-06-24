@@ -4,10 +4,26 @@
   <meta charset="UTF-8">
   <title>Meu Perfil - Nutribem</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
   <link rel="stylesheet" href="assets/css/meuperfil.css">
 </head>
 <body>
-
+  <header class="bg-success text-white border-bottom mb-4 py-3">
+    <div class="container d-flex justify-content-between align-items-center">
+      <h1 class="h4 m-0">NUTRIBEM</h1>
+      <div class="dropdown">
+        <button class="btn btn-light text-success dropdown-toggle" type="button" id="menuDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          Menu
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" href="#">Exercícios</a></li>
+          <li><a class="dropdown-item" href="#">Relatório</a></li>
+          <li><a class="dropdown-item" href="Meuperfil.php">Meu Perfil</a></li>
+          <li><a class="dropdown-item" href="Crud/cadastro.php">Sair</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
   <div class="perfil-wrapper">
     <div class="perfil-card">
       <div class="perfil-img">
