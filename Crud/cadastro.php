@@ -3,7 +3,7 @@
     require_once '../classes/Usuario.class.php';
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $usuario = new usuario(
+        $usuario = new Usuario(
             $_POST['nome'],
             $_POST['email'],
             $_POST['senha'],
@@ -17,12 +17,16 @@
     <meta charset="UTF-8">
     <title>Cadastro | Nutribem</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/login.css">
+    <link rel="stylesheet" href="../assets/css/cadastro.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
         <div class="form-container sign-up">
+            <div class="logo-container">
+                <img src="../assets/img/logo_nutribem.png" alt="Logo Nutribem">
+            </div>
+
             <form method="post">
                 <h2>Criar Conta</h2>
 
@@ -46,11 +50,17 @@
                     <input type="password" name="confirmSenha" placeholder="Confirmar Senha" required>
                 </div>
 
-                <center><button type="submit" name="acao" value="salvar" class="cadastro">Cadastrar</button></center>
+                <center>
+                    <button type="submit" name="acao" value="salvar" class="cadastro">Cadastrar</button>
+                </center>
+
+                <div class="login-link">
+                    Já tem uma conta? <a href="login.php">Faça login</a>
+                </div>
             </form>
         </div>
-
     </div>
 </body>
 </html>
+
 
