@@ -6,9 +6,9 @@ body {
 
   .perfil-wrapper {
     background-color: #218754;
-    max-width: 380px;
-    margin: 50px auto;
-    padding: 20px;
+    max-width: 800px;
+    margin: 80px auto;
+    padding: 50px;
   }
 
   .perfil-card {
@@ -22,7 +22,7 @@ body {
   .perfil-img {
     width: 80px;
     height: 80px;
-    background-color: black;
+    background-color: rgb(255, 255, 255);
     border-radius: 50%;
     position: absolute;
     top: -40px;
@@ -31,19 +31,19 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    font-size: 36px;
+    color: rgb(0, 0, 0);
+    font-size: 50px;
   }
 
   .perfil-nome {
-    font-size: 14px;
+    font-size: 20px;
     font-weight: bold;
-    margin-top: 10px;
+    margin-top: 5px;
   }
 
   .perfil-email {
-    font-size: 12px;
-    color: #333;
+    font-size: 16px;
+    color: #000000;
   }
 
   .perfil-item {
