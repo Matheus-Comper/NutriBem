@@ -34,9 +34,9 @@
       <div class="perfil-email">lucasxumbaca1234@gmail.com</div>
 <br>
       <div class="perfil-item">Meus Dados</div>
-      <div class="perfil-item">Sobre Nós</div>
-      <div class="perfil-item">Configurações</div>
-      <div class="perfil-item">Ajuda</div>
+     <a href="sobrenos.php"><div class="perfil-item">Sobre Nós</div></a> 
+    <a href="configuracao.php"> <div class="perfil-item">Configurações</div></a>
+    <a href="ajuda.php"><div class="perfil-item">Ajuda</div></a>
       <a href="index.php"><div class="perfil-item">Sair</div></a>
     </div>
   </div>

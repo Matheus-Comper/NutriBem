@@ -38,10 +38,10 @@
                 <center><button type="submit" name="acao" value="entrar" class="cadastro">Entrar</button></center>
 
                 <div class="login-link">
-                    Já tem uma conta? <a href="login.php">Faça login</a>
+                Já tem uma conta?<a href="cadastro.php"> Faça login</a>
                 </div>
 
-                
+
             </form>
         </div>
     </div>
