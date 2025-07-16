@@ -3,13 +3,24 @@
     require_once '../classes/Usuario.class.php';
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $usuario = new Usuario(
-            $_POST['nome'],
-            $_POST['email'],
-            $_POST['senha'],
-            $_POST['confirmSenha'],
-        );
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $senha = $_POST['senha'];
+    $confirmSenha = $_POST['confirmSenha'];
+    $dataNasc = $_POST['data_nasc'];
+    $sexo = $_POST['sexo'];
+
+    if ($senha !== $confirmSenha) {
+        die('As senhas não coincidem!');
     }
+
+    $usuario = new Usuario($nome, $email, $senha, $dataNasc, $sexo);
+    $usuario->salvar();
+
+    header("Location: login.php");
+    exit;
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -41,6 +52,21 @@
                 </div>
 
                 <div class="input-group">
+                    <i class="fas fa-calendar"></i>
+                    <input type="date" name="data_nasc" placeholder="Data de Nascimento" required>
+                </div>
+
+                <div class="input-group">
+                    <i class="fas fa-venus-mars"></i>
+                    <select name="sexo" required>
+                    <option value="">Selecione o sexo</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Feminino">Feminino</option>
+                    <option value="Outro">Outro</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
                     <i class="fas fa-lock"></i>
                     <input type="password" name="senha" placeholder="Senha" required>
                 </div>
@@ -52,11 +78,7 @@
 
                 <center>
                     <button type="submit" name="acao" value="salvar" class="cadastro">Cadastrar</button>
-                </center>
-
-                <div class="login-link">
-                    Já tem uma conta? <a href="login.php">Faça login</a>
-                </div>
+                </center>  
             </form>
         </div>
     </div>

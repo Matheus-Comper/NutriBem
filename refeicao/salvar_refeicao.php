@@ -1,45 +1,51 @@
 <?php
 require_once '../Config/Conexao.php';
-
+require_once '../classes/Alimento.class.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  $tipo = $_POST['tipo'] ?? '';
-  $alimentosJson = $_POST['alimentos'] ?? '';
-  $alimentos = json_decode($alimentosJson, true);
+  $tipo = $_POST['refeicao'];
+  $alimento_id = $_POST['alimento_id'];
+  $quantidade = $_POST['quantidade']; // em gramas
 
-  if (empty($tipo) || empty($alimentos) || !is_array($alimentos)) {
-    die('Dados inválidos. Volte e tente novamente.');
+  if (!$tipo || !$alimento_id || !$quantidade) {
+    die("Erro: Dados incompletos.");
   }
 
+  try {
+    $conn = Conexao::getConexao();
 
-  $pdo = Conexao::getConexao();
-
-  foreach ($alimentos as $item) {
-    $alimento_id = $item['id'];
-    $quantidade = $item['quantidade'];
-
-    // Pega os dados do alimento
-    $stmt = $pdo->prepare("SELECT nome, proteina, carboidrato, gordura, calorias FROM alimentos WHERE id = ?");
+    // Buscar alimento no banco
+    $stmt = $conn->prepare("SELECT * FROM alimentos WHERE id = ?");
     $stmt->execute([$alimento_id]);
     $alimento = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (!$alimento) {
-      continue; // pula se não encontrou
+      die("Erro: Alimento não encontrado.");
     }
 
-    $fator = $quantidade / 100;
+    // Cálculo dos nutrientes de acordo com a quantidade informada
+    $fator = $quantidade / 100; // Supondo que os valores nutricionais são por 100g
     $proteina = $alimento['proteina'] * $fator;
     $carboidrato = $alimento['carboidrato'] * $fator;
     $gordura = $alimento['gordura'] * $fator;
     $calorias = $alimento['calorias'] * $fator;
 
-    $stmt = $pdo->prepare("INSERT INTO refeicao (descricao, proteina, carboidrato, gordura, calorias) VALUES (?, ?, ?, ?, ?)");
-    $stmt->execute([$tipo, $proteina, $carboidrato, $gordura, $calorias]);
-  }
-  header("Location: ../index.php");
-  exit;
-} else {
-  echo "Método inválido.";
-}
+    // Inserir a refeição com todos os dados
+    $stmt2 = $conn->prepare("INSERT INTO refeicao (tipo, quantidade, proteina, carboidrato, gordura, calorias) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt2->execute([
+      $tipo,
+      $quantidade,
+      $proteina,
+      $carboidrato,
+      $gordura,
+      $calorias
+    ]);
 
+    header("Location: ../index.php");
+    exit;
+
+  } catch (PDOException $e) {
+    die("Erro no banco: " . $e->getMessage());
+  }
+}
 ?>

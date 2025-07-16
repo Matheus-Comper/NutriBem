@@ -1,6 +1,6 @@
 <?php
 require_once '../Config/Conexao.php';
-require_once '../classes/Alimento.class.php';
+require_once("../autoload.php");
 
 $classificacoes = ['Café da manhã', 'Almoço', 'Jantar', 'Lanche', 'Pré-treino', 'Pós-treino'];
 ?>

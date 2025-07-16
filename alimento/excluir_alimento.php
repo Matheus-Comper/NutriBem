@@ -2,9 +2,9 @@
 require_once ('../Config/Conexao.php');
 require_once("../autoload.php");
 
-if (isset($_GET['id'])) {
-  $id = $_GET['id'];
-  refeicao::excluir($id);
+if (isset($_POST['id'])) {
+  $id = $_POST['id'];
+  Alimento::excluir($id);
 }
 
 header('Location: ../index.php');

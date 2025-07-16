@@ -1,7 +1,5 @@
 <?php
-
 require_once(__DIR__ . '/../Config/Conexao.php');
-
 
 class Refeicao {
   public $tipo;
@@ -51,23 +49,25 @@ class Refeicao {
   }
 
   public static function listarTodasComAlimentos() {
-    $pdo = Conexao::getConexao();
-    $refeicoes = $pdo->query("SELECT * FROM refeicao")->fetchAll(PDO::FETCH_ASSOC);
+  $pdo = Conexao::getConexao();
+  $stmt = $pdo->query("
+    SELECT r.tipo, ra.quantidade, 
+           a.nome, a.proteina, a.carboidrato, a.gordura, a.calorias
+    FROM refeicao r
+    JOIN refeicao_alimentos ra ON r.id = ra.refeicao_id
+    JOIN alimentos a ON ra.alimento_id = a.id
+  ");
 
-    foreach ($refeicoes as &$refeicao) {
-      $stmt = $pdo->prepare("
-        SELECT a.nome, ra.quantidade_gramas
-        FROM refeicao_alimentos ra
-        JOIN alimentos a ON ra.id_alimento = a.id
-        WHERE ra.id_refeicao = ?
-      "); 
+  $refeicoes = [];
 
-      $stmt->execute([$refeicao['id']]);
-      $refeicao['alimentos'] = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
+  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+    $tipo = $row['tipo']; // agora usa direto do banco
+    $refeicoes[$tipo]['alimentos'][] = $row;
 
-    return $refeicoes;
-  } 
+  }
+
+  return $refeicoes;
+}
 
 }
 ?>
