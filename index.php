@@ -4,7 +4,6 @@
     header("Location: Crud/login.php");
     exit;
   }
-  
   require_once 'refeicao/cadastrar_refeicao.php';
   require_once 'classes/Alimento.class.php';
   require_once 'classes/Usuario.class.php';
@@ -71,15 +70,17 @@
         
         <a href="Meuperfil.php"><i class="bi bi-person-fill"></i> Meu perfil</a>
         <a href="recompensas.php"><i class="bi bi-star-fill"></i> Recompensas</a>
+        <a href="Meuperfil.php"><i class="bi bi-person-fill"></i> Exercícios</a>
         <a href="#"><i class="bi bi-bar-chart-fill"></i> Relatórios</a>
         <a href="#"><i class="bi bi-gear-fill"></i> Configurações</a>
+        <a href="Crud/logout.php" class="text-danger"><i class="bi bi-box-arrow-right"></i> Sair</a>
       </div>
 
       <div class="col-md-9 col-lg-10 p-4">
 
         <div class="row">
           <div class="col-md-6">
-            <div class="refeicoes">
+            <div class="refeicoes" style="max-height: 450px; overflow-y: auto;">
               <h5 class="mb-3">Meu dia</h5>
               <?php 
                 $tipos_refeicao = [

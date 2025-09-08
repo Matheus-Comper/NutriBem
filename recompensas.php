@@ -9,13 +9,13 @@
   $usuario = Usuario::buscarPorEmail($_SESSION['usuario_email']);
 
   // Exemplo de sistema simples de pontos
-  $pontos = $usuario['pontos'] ?? 0;
+  $pontos = 150;
 
   // Recompensas fictícias
   $recompensas = [
-    ['nome' => 'Desbloquear Receita Exclusiva', 'pontos' => 50],
-    ['nome' => 'Desconto em Suplementos', 'pontos' => 120],
-    ['nome' => 'Badge Nutribem PRO', 'pontos' => 200],
+    ['nome' => 'Recompensa 1', 'pontos' => 50],
+    ['nome' => 'Recompensa 2', 'pontos' => 120],
+    ['nome' => 'Recompensa 3', 'pontos' => 200],
   ];
 ?>
 <!DOCTYPE html>
@@ -47,6 +47,7 @@
       <a href="recompensas.php"><i class="bi bi-star-fill"></i> Recompensas</a>
       <a href="#"><i class="bi bi-bar-chart-fill"></i> Relatórios</a>
       <a href="#"><i class="bi bi-gear-fill"></i> Configurações</a>
+      
     </div>
 
     <div class="col-md-9 col-lg-10 p-4">
