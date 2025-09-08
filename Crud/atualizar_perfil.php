@@ -19,7 +19,7 @@ $dados = [
 Usuario::atualizar($dados, $emailAntigo);
 $_SESSION['usuario_email'] = $dados['email'];
 
-header("Location: ../index.php");
+header("Location: ../principal.php");
 exit;
 ?>
 
