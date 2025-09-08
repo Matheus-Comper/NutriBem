@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nutribem - Entrada</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body, html {
+      height: 100%;
+      width: 100%;
+    }
+
+    .split {
+      display: flex;
+      height: 100vh;
+      width: 100%;
+    }
+
+    /* Lado esquerdo (texto) */
+    .left {
+      flex: 1;
+      background: #e6e6e6;
+      color: #2e7d32;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .left img {
+      max-width: 120px;   /* tamanho máximo da logo */
+      height: auto;       /* mantém a proporção */
+      margin-bottom: 30px;
+    }
+
+    .left h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .left p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: #000000;
+      max-width: 400px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 15px;
+    }
+
+    .left .btn {
+      text-decoration: none;
+      background: linear-gradient(45deg, #2e7d32, #4caf50);
+      color: white;
+      padding: 14px 28px;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: bold;
+      transition: 0.4s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .left .btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid #2e7d32;
+      color: #2e7d32;
+    }
+
+    .btn-outline:hover {
+      background: #2e7d32;
+      color: #fff;
+    }
+
+    /* Lado direito (imagem desfocada e escura) */
+    .right {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+
+    .right::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: url("assets/img/nutricionista.jpg") no-repeat center center/cover;
+      filter: blur(6px) brightness(60%);
+      transform: scale(1.1); /* evita bordas pretas do blur */
+      z-index: 0;
+    }
+
+    .right .content {
+      position: relative;
+      z-index: 1;
+      padding: 20px;
+      animation: fadeIn 1.5s ease-in-out forwards;
+      opacity: 0;
+    }
+
+    .right .content h2 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      text-shadow: 0 3px 8px rgba(0,0,0,0.6);
+    }
+
+    .right .content p {
+      font-size: 1.2rem;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    }
+
+    /* Animação de fade-in */
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .split {
+        flex-direction: column;
+      }
+      .left, .right {
+        flex: unset;
+        height: 50vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="split">
+    <!-- Lado esquerdo -->
+    <div class="left">
+      <img src="assets/img/logo_nutribem.png" alt="Logo Nutribem">
+      <h1>Sua saúde em primeiro lugar</h1>
+      <p>
+        O Nutribem ajuda você a monitorar refeições, calcular nutrientes e alcançar 
+        seus objetivos de forma prática e inteligente.
+      </p>
+      <div class="btn-group">
+        <a href="Crud/cadastro.php" class="btn">Cadastrar</a>
+        <a href="Crud/login.php" class="btn btn-outline">Login</a>
+      </div>
+    </div>
+
+    <!-- Lado direito -->
+    <div class="right">
+      <div class="content">
+        <h2>Tornando sua vida mais saudável</h2>
+        <p>Com tecnologia e nutrição ao seu alcance</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
