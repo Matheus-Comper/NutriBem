@@ -36,7 +36,7 @@
         <span><?= htmlspecialchars($usuario['nome'] ?? 'Usuário') ?></span>
       </div>
 
-      <a href="index.php"><i class="bi bi-house-fill"></i> Tela Principal</a>
+      <a href="principal.php"><i class="bi bi-house-fill"></i> Tela Principal</a>
       <a href="Meuperfil.php" class="active"><i class="bi bi-person-fill"></i> Meu Perfil</a>
       <a href="recompensas.php"><i class="bi bi-star-fill"></i> Recompensas</a>
       <a href="#"><i class="bi bi-bar-chart-fill"></i> Relatórios</a>
@@ -48,16 +48,22 @@
       <h4 class="mb-4">Meu Perfil</h4>
 
       <div class="card shadow rounded-4 p-4">
-        <div class="d-flex align-items-center mb-4">
-          <img src="assets/img/user.png" alt="Foto de Perfil" width="80" class="rounded-circle me-3">
-          <div>
-            <h4 class="mb-0"><?= $usuario['nome'] ?></h4>
-            <small class="text-muted"><?= $usuario['email'] ?></small>
+      <div class="d-flex align-items-center mb-4">
+        <img src="<?= $usuario['foto'] ? $usuario['foto'] : 'assets/img/user.png' ?>" 
+            alt="Foto de Perfil" width="80" height="80" 
+            class="rounded-circle me-3" style="object-fit: cover;">
+        
+        <div>
+          <h4 class="mb-0"><?= $usuario['nome'] ?></h4>
+          <small class="text-muted"><?= $usuario['email'] ?></small>
+          
+          <div class="mt-2">
+            <input type="file" name="foto" accept="image/*" class="form-control">
           </div>
-          <button class="btn btn-outline-secondary ms-auto"><i class="bi bi-pencil-fill"></i> Trocar Foto</button>
         </div>
+      </div>
 
-        <form method="post" action="Crud/atualizar_perfil.php">
+        <form method="post" action="Crud/atualizar_perfil.php" enctype="multipart/form-data">
           <div class="mb-3">
             <label class="form-label">Nome completo</label>
             <input type="text" name="nome" value="<?= $usuario['nome'] ?>" class="form-control" required>

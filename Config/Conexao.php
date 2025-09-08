@@ -1,7 +1,7 @@
 <?php
 class Conexao {
   private static $host = 'localhost:3306';
-  private static $dbname = 'nutribem';
+  private static $dbname = 'nutri_bem';
   private static $user = 'root';
   private static $pass = '';
 

@@ -8,14 +8,24 @@ class Usuario {
   private $senha;
   private $dataNasc;
   private $sexo;
+  private $foto;
 
-  public function __construct( $nome, $email, $senha, $dataNasc, $sexo) {
+  public function __construct($nome = null, $email = null, $senha = null, $dataNasc = null, $sexo = null, $foto = null) {
     $this->nome = $nome;
     $this->email = $email;
     $this->senha = $senha;
     $this->dataNasc = $dataNasc;
     $this->sexo = $sexo;
+    $this->foto = $foto;
+}
+
+  public function setFoto($foto) {
+    $this->foto = $foto;
   }
+  public function getFoto() {
+      return $this->foto;
+  }
+
 
   public function salvar() {
     $pdo = Conexao::getConexao();
@@ -31,7 +41,8 @@ class Usuario {
       $this->email,
       $senhaCriptografada, 
       $this->dataNasc,
-      $this->sexo
+      $this->sexo,
+      $this->foto
     ]);
   }
 
@@ -61,8 +72,9 @@ class Usuario {
                 meta_calorias = ?, 
                 meta_proteina = ?, 
                 meta_carboidrato = ?, 
-                meta_gordura = ?
-            WHERE email = ?";
+                meta_gordura = ?" .
+                ($this->foto ? ", foto = :foto" : "") . "
+                WHERE email = ?";
 
     $stmt = $pdo->prepare($sql);
     return $stmt->execute([
