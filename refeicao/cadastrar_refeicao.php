@@ -1,8 +1,9 @@
 <?php
-  require_once 'classes/Alimento.class.php';
-  $alimentos = Alimento::listarTodos();
+require_once 'classes/Alimento.class.php';
+$alimentos = Alimento::listarTodos();
 ?>
-<!-- café da manhã -->
+
+<!-- CAFÉ DA MANHÃ -->
 <div class="modal fade" id="modalcafe_manha" tabindex="-1" aria-labelledby="modalcafe_manhaLabel" aria-hidden="true">
   <div class="modal-dialog">
     <form method="post" action="refeicao/salvar_refeicao.php">
@@ -24,7 +25,7 @@
           </div>
           <div class="mb-3">
             <label>Quantidade (g)</label>
-            <input type="number" class="form-control" name="quantidade" required min="1">
+            <input type="number" class="form-control" name="quantidade" id="quantidade" required min="1">
           </div>
         </div>
         <div class="modal-footer">
@@ -35,8 +36,8 @@
   </div>
 </div>
 
-<!-- almoço -->
-<div class="modal fade" id="modalAlmoco" tabindex="-1" aria-labelledby="modalAlomocoLabel" aria-hidden="true">
+<!-- ALMOÇO -->
+<div class="modal fade" id="modalAlmoco" tabindex="-1" aria-labelledby="modalAlmocoLabel" aria-hidden="true">
   <div class="modal-dialog">
     <form method="post" action="refeicao/salvar_refeicao.php">
       <div class="modal-content">
@@ -57,7 +58,7 @@
           </div>
           <div class="mb-3">
             <label>Quantidade (g)</label>
-            <input type="number" class="form-control" name="quantidade" required min="1">
+            <input type="number" class="form-control" name="quantidade" id="quantidade" required min="1">
           </div>
         </div>
         <div class="modal-footer">
@@ -68,7 +69,7 @@
   </div>
 </div>
 
-<!-- Lanche -->
+<!-- CAFÉ DA TARDE -->
 <div class="modal fade" id="modalcafe_tarde" tabindex="-1" aria-labelledby="modalcafe_tardeLabel" aria-hidden="true">
   <div class="modal-dialog">
     <form method="post" action="refeicao/salvar_refeicao.php">
@@ -90,7 +91,7 @@
           </div>
           <div class="mb-3">
             <label>Quantidade (g)</label>
-            <input type="number" class="form-control" name="quantidade" required min="1">
+            <input type="number" class="form-control" name="quantidade" id="quantidade" required min="1">
           </div>
         </div>
         <div class="modal-footer">
@@ -101,13 +102,13 @@
   </div>
 </div>
 
-<!-- almoço -->
+<!-- JANTA -->
 <div class="modal fade" id="modalJanta" tabindex="-1" aria-labelledby="modalJantaLabel" aria-hidden="true">
   <div class="modal-dialog">
     <form method="post" action="refeicao/salvar_refeicao.php">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Almoço</h5>
+          <h5 class="modal-title">Janta</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
         </div>
         <div class="modal-body">
@@ -123,7 +124,7 @@
           </div>
           <div class="mb-3">
             <label>Quantidade (g)</label>
-            <input type="number" class="form-control" name="quantidade" required min="1">
+            <input type="number" class="form-control" name="quantidade" id="quantidade" required min="1">
           </div>
         </div>
         <div class="modal-footer">
@@ -133,3 +134,5 @@
     </form>
   </div>
 </div>
+
+

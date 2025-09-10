@@ -7,6 +7,6 @@ if (isset($_POST['id'])) {
   Alimento::excluir($id);
 }
 
-header('Location: ../index.php');
+header('Location: ../principal.php');
 exit;
 ?>

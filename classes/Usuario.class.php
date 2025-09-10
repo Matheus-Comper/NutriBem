@@ -1,8 +1,8 @@
 <?php
 require_once(__DIR__ . '/../Config/Conexao.php');
 
-
 class Usuario {
+  private $id;
   private $nome;
   private $email;
   private $senha;
@@ -17,24 +17,37 @@ class Usuario {
     $this->dataNasc = $dataNasc;
     $this->sexo = $sexo;
     $this->foto = $foto;
-}
-
-  public function setFoto($foto) {
-    $this->foto = $foto;
-  }
-  public function getFoto() {
-      return $this->foto;
   }
 
+  // Getters e setters básicos
+  public function setId($id) { $this->id = $id; }
+  public function getId() { return $this->id; }
 
+  public function setNome($nome) { $this->nome = $nome; }
+  public function getNome() { return $this->nome; }
+
+  public function setEmail($email) { $this->email = $email; }
+  public function getEmail() { return $this->email; }
+
+  public function setSenha($senha) { $this->senha = $senha; }
+  public function getSenha() { return $this->senha; }
+
+  public function setDataNasc($dataNasc) { $this->dataNasc = $dataNasc; }
+  public function getDataNasc() { return $this->dataNasc; }
+
+  public function setSexo($sexo) { $this->sexo = $sexo; }
+  public function getSexo() { return $this->sexo; }
+
+  public function setFoto($foto) { $this->foto = $foto; }
+  public function getFoto() { return $this->foto; }
+
+  // -------- SALVAR --------
   public function salvar() {
     $pdo = Conexao::getConexao();
-  
-    
     $senhaCriptografada = password_hash($this->senha, PASSWORD_DEFAULT);
-  
-    $sql = "INSERT INTO usuarios (nome, email, senha, dataNasc, sexo) 
-            VALUES (?, ?, ?, ?, ?)";
+
+    $sql = "INSERT INTO usuarios (nome, email, senha, dataNasc, sexo, foto) 
+            VALUES (?, ?, ?, ?, ?, ?)";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
       $this->nome,
@@ -42,10 +55,11 @@ class Usuario {
       $senhaCriptografada, 
       $this->dataNasc,
       $this->sexo,
-      $this->foto
+      $this->foto ?? 'assets/img/user.png'
     ]);
   }
 
+  // -------- LISTAR --------
   public static function listarTodas() {
     $pdo = Conexao::getConexao();
     $sql = "SELECT * FROM usuarios ORDER BY id DESC";
@@ -53,6 +67,7 @@ class Usuario {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
+  // -------- BUSCAR --------
   public static function buscarPorEmail($email) {
     $pdo = Conexao::getConexao();
     $sql = "SELECT * FROM usuarios WHERE email = ?";
@@ -61,7 +76,8 @@ class Usuario {
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
 
-  public static function atualizar($dados, $emailAntigo) {
+  // -------- ATUALIZAR --------
+  public function atualizar($emailAntigo) {
     $pdo = Conexao::getConexao();
 
     $sql = "UPDATE usuarios SET 
@@ -72,24 +88,40 @@ class Usuario {
                 meta_calorias = ?, 
                 meta_proteina = ?, 
                 meta_carboidrato = ?, 
-                meta_gordura = ?" .
-                ($this->foto ? ", foto = :foto" : "") . "
-                WHERE email = ?";
+                meta_gordura = ?";
+
+    if ($this->foto) {
+      $sql .= ", foto = ?";
+    }
+
+    $sql .= " WHERE email = ?";
+
+    $params = [
+      $this->nome,
+      $this->dataNasc,
+      $this->sexo,
+      $this->email,
+      $this->meta_calorias ?? 0,
+      $this->meta_proteina ?? 0,
+      $this->meta_carboidrato ?? 0,
+      $this->meta_gordura ?? 0,
+    ];
+
+    if ($this->foto) {
+      $params[] = $this->foto;
+    }
+
+    $params[] = $emailAntigo;
 
     $stmt = $pdo->prepare($sql);
-    return $stmt->execute([
-        $dados['nome'],
-        $dados['data_nasc'],
-        $dados['sexo'],
-        $dados['email'],
-        $dados['meta_calorias'],
-        $dados['meta_proteina'],
-        $dados['meta_carboidrato'],
-        $dados['meta_gordura'],
-        $emailAntigo // WHERE
-    ]);
-}
+    return $stmt->execute($params);
+  }
 
+  // -------- SET METAS --------
+  public function setMetaCalorias($v) { $this->meta_calorias = $v; }
+  public function setMetaProteina($v) { $this->meta_proteina = $v; }
+  public function setMetaCarboidrato($v) { $this->meta_carboidrato = $v; }
+  public function setMetaGordura($v) { $this->meta_gordura = $v; }
 
 }
 ?>

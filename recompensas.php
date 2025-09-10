@@ -36,20 +36,7 @@
 <div class="container-fluid">
   <div class="row">
 
-    <div class="col-md-3 col-lg-2 sidebar">
-      <div class="d-flex align-items-center mb-3">
-        <div class="profile-img me-2"></div>
-        <span><?= htmlspecialchars($usuario['nome'] ?? 'Usuário') ?></span>
-      </div>
-
-      <a href="index.php"><i class="bi bi-person-fill"></i> Tela Principal</a>
-      <a href="Meuperfil.php"><i class="bi bi-person-fill"></i> Meu Perfil</a>
-      <a href="recompensas.php"><i class="bi bi-star-fill"></i> Recompensas</a>
-      <a href="#"><i class="bi bi-bar-chart-fill"></i> Relatórios</a>
-      <a href="#"><i class="bi bi-gear-fill"></i> Configurações</a>
-      
-    </div>
-
+    <?php include 'menu.php'; ?>
     <div class="col-md-9 col-lg-10 p-4">
       <h4 class="mb-4"><i class="bi bi-star-fill text-warning me-2"></i>Minhas Recompensas</h4>
 

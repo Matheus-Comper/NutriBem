@@ -20,27 +20,29 @@
 
   $refeicoes = Refeicao::listarTodasComAlimentos(); 
 
-  $consumido_calorias    = 0;
-  $consumido_proteina    = 0;
-  $consumido_carboidrato = 0;
-  $consumido_gordura     = 0;
+  $refeicoes = Refeicao::listarTodasComAlimentos(); // já pega tudo do banco
 
-  foreach ($refeicoes as $refeicao) {
-  foreach ($refeicao['alimentos'] as $alimento) {
-    $quant = $alimento['quantidade'] / 100;
+$consumido_calorias = 0;
+$consumido_proteina = 0;
+$consumido_carboidrato = 0;
+$consumido_gordura = 0;
 
-    $consumido_calorias    += $alimento['calorias'] * $quant;
-    $consumido_proteina    += $alimento['proteina'] * $quant;
-    $consumido_carboidrato += $alimento['carboidrato'] * $quant;
-    $consumido_gordura     += $alimento['gordura'] * $quant;
-  }
+foreach ($refeicoes as $refeicao) {
+    if (!empty($refeicao['alimentos'])) {
+        foreach ($refeicao['alimentos'] as $alimento) {
+            $quant = $alimento['quantidade'] / 100; 
+            $consumido_calorias    += $alimento['calorias'] * $quant;
+            $consumido_proteina    += $alimento['proteina'] * $quant;
+            $consumido_carboidrato += $alimento['carboidrato'] * $quant;
+            $consumido_gordura     += $alimento['gordura'] * $quant;
+        }
+    }
 }
 
-
-  $percent_calorias    = ($meta_calorias > 0) ? ($consumido_calorias / $meta_calorias) * 100 : 0;
-  $percent_proteina    = ($meta_proteina > 0) ? ($consumido_proteina / $meta_proteina) * 100 : 0;
-  $percent_carboidrato = ($meta_carboidrato > 0) ? ($consumido_carboidrato / $meta_carboidrato) * 100 : 0;
-  $percent_gordura     = ($meta_gordura > 0) ? ($consumido_gordura / $meta_gordura) * 100 : 0;
+$percent_calorias    = ($meta_calorias > 0) ? ($consumido_calorias / $meta_calorias) * 100 : 0;
+$percent_proteina    = ($meta_proteina > 0) ? ($consumido_proteina / $meta_proteina) * 100 : 0;
+$percent_carboidrato = ($meta_carboidrato > 0) ? ($consumido_carboidrato / $meta_carboidrato) * 100 : 0;
+$percent_gordura     = ($meta_gordura > 0) ? ($consumido_gordura / $meta_gordura) * 100 : 0;
 
 ?>
 <!DOCTYPE html>
@@ -48,11 +50,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Nutribem</title>
-  <script href="assets/js/script.js"></script>
   <link href="assets/css/index.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 </head>
+
+<?php include 'alimento/modal_alimento.php'; ?>
+
 <body>
 
   <div class="topbar w-100">
@@ -62,19 +66,7 @@
   <div class="container-fluid">
     <div class="row">
 
-      <div class="col-md-3 col-lg-2 sidebar">
-        <div class="d-flex align-items-center mb-3">
-          <div class="profile-img me-2"></div>
-          <span><?= htmlspecialchars($usuario['nome'] ?? 'Usuário') ?></span>
-        </div>
-        
-        <a href="Meuperfil.php"><i class="bi bi-person-fill"></i> Meu perfil</a>
-        <a href="recompensas.php"><i class="bi bi-star-fill"></i> Recompensas</a>
-        <a href="Meuperfil.php"><i class="bi bi-person-fill"></i> Exercícios</a>
-        <a href="#"><i class="bi bi-bar-chart-fill"></i> Relatórios</a>
-        <a href="#"><i class="bi bi-gear-fill"></i> Configurações</a>
-        <a href="Crud/logout.php" class="text-danger"><i class="bi bi-box-arrow-right"></i> Sair</a>
-      </div>
+      <?php include 'menu.php'; ?>
 
       <div class="col-md-9 col-lg-10 p-4">
 
@@ -119,21 +111,28 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <?php if (!empty($refeicoes[$tipo]['alimentos'])): ?>
-                            <?php foreach ($refeicoes[$tipo]['alimentos'] as $alimento): ?>
-                              <tr>
-                                <td><?= htmlspecialchars($alimento['nome']) ?></td>
-                                <td><?= $alimento['quantidade'] ?></td>
-                                <td><?= number_format($alimento['proteina'] * $alimento['quantidade'] / 100, 1) ?></td>
-                                <td><?= number_format($alimento['carboidrato'] * $alimento['quantidade'] / 100, 1) ?></td>
-                                <td><?= number_format($alimento['gordura'] * $alimento['quantidade'] / 100, 1) ?></td>
-                                <td><?= number_format($alimento['calorias'] * $alimento['quantidade'] / 100, 0) ?></td>
-                              </tr>
-                            <?php endforeach; ?>
-                          <?php else: ?>
-                            <tr>
-                              <td colspan="6" class="text-center">Nenhum alimento cadastrado nesta refeição.</td>
-                            </tr>
+                          <?php 
+                          // Lista apenas os alimentos dessa refeição
+                          $temAlimentos = false;
+                          foreach ($refeicoes as $r):
+                              if ($r['tipo'] === $tipo):
+                                  $temAlimentos = true;
+                          ?>
+                          <tr>
+                            <td><?= htmlspecialchars($r['descricao']) ?></td>
+                            <td><?= round(($r['proteina'] + $r['carboidrato'] + $r['gordura'] + $r['calorias']) / 4) ?>g</td>
+                            <td><?= number_format($r['proteina'],1) ?></td>
+                            <td><?= number_format($r['carboidrato'],1) ?></td>
+                            <td><?= number_format($r['gordura'],1) ?></td>
+                            <td><?= number_format($r['calorias'],0) ?></td>
+                          </tr>
+                          <?php 
+                              endif;
+                          endforeach;
+                          if (!$temAlimentos): ?>
+                          <tr>
+                            <td colspan="6" class="text-center">Nenhum alimento cadastrado nesta refeição.</td>
+                          </tr>
                           <?php endif; ?>
                         </tbody>
                       </table>
@@ -221,7 +220,9 @@
                   </tbody>
                 </table>
               </div>
-              <a href="alimento/novo_alimento.php" class="btn btn-success w-100 mt-2">Adicionar alimento</a>
+              <button class="btn btn-success w-100 mt-2" data-bs-toggle="modal" data-bs-target="#modalNovoAlimento">
+                Adicionar alimento
+              </button>
             </div>
           </div>
         </div>
@@ -233,3 +234,5 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
+

@@ -13,7 +13,7 @@
       $_POST['calorias']
     ]);
 
-    header("Location: ../index.php");
+    header("Location: ../principal.php");
     exit;
   }
 ?>
