@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $meta_carboidrato = $_POST['meta_carboidrato'];
     $meta_gordura = $_POST['meta_gordura'];
 
-    // Upload da foto
+
     $fotoPath = $usuario['foto'] ?? "assets/img/user.png";
     if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
         $ext = pathinfo($_FILES['foto']['name'], PATHINFO_EXTENSION);
@@ -29,11 +29,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $destino = "../uploads/" . $nomeArquivo;
 
         if (move_uploaded_file($_FILES['foto']['tmp_name'], $destino)) {
-            $fotoPath = "uploads/" . $nomeArquivo; // salvar caminho relativo
+            $fotoPath = "uploads/" . $nomeArquivo; 
         }
     }
 
-    // Atualizar usuário
     $userObj = new Usuario();
     $userObj->setId($usuario['id_usuario']);
     $userObj->setNome($nome);
@@ -47,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $userObj->setMetaGordura($meta_gordura);
 
     if ($userObj->atualizar($usuario['email'])) {
-        // Atualiza email da sessão se mudar
+
         $_SESSION['usuario_email'] = $email;
         header("Location: ../Meuperfil.php?success=1");
         exit;

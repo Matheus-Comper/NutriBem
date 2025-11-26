@@ -10,19 +10,20 @@ class Refeicao {
   public $calorias;
 
 
-  public function __construct($tipo = '', $descricao = '', $proteina = 0, $carboidrato = 0, $gordura = 0, $calorias = 0) {
+  public function __construct($tipo = '', $descricao = '', $proteina = 0, $carboidrato = 0, $gordura = 0, $calorias = 0, $quantidade = 0) {
     $this->tipo = $tipo;
     $this->descricao = $descricao;
     $this->proteina = $proteina;
     $this->carboidrato = $carboidrato;
     $this->gordura = $gordura;
     $this->calorias = $calorias;
+    $this->quantidade = $quantidade;
   }
 
   public function salvar() {
     $pdo = Conexao::getConexao();
-    $sql = "INSERT INTO refeicao (tipo, descricao, proteina, carboidrato, gordura, calorias) 
-            VALUES (?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO refeicao (tipo, descricao, proteina, carboidrato, gordura, calorias, quantidade) 
+            VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
       $this->tipo,
@@ -30,7 +31,8 @@ class Refeicao {
       $this->proteina,
       $this->carboidrato,
       $this->gordura,
-      $this->calorias
+      $this->calorias,
+      $this->quantidade
     ]);
   }
 
@@ -48,26 +50,25 @@ class Refeicao {
     $stmt->execute();
   }
 
-  public static function listarTodasComAlimentos() {
-  $pdo = Conexao::getConexao();
-  $stmt = $pdo->query("
-    SELECT r.tipo, ra.quantidade, 
-           a.nome, a.proteina, a.carboidrato, a.gordura, a.calorias
-    FROM refeicao r
-    JOIN refeicao_alimentos ra ON r.id = ra.refeicao_id
-    JOIN alimentos a ON ra.alimento_id = a.id
-  ");
+ public static function listarTodasComAlimentos() {
+    $pdo = Conexao::getConexao();
 
-  $refeicoes = [];
+    $stmt = $pdo->query("
+        SELECT 
+            id AS refeicao_id,
+            tipo,
+            descricao,
+            quantidade,
+            proteina,
+            carboidrato,
+            gordura,
+            calorias
+        FROM refeicao
+    ");
 
-  while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    $tipo = $row['tipo']; // agora usa direto do banco
-    $refeicoes[$tipo]['alimentos'][] = $row;
-
-  }
-
-  return $refeicoes;
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+  
 
 }
 ?>

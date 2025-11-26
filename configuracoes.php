@@ -30,12 +30,10 @@ $usuario = Usuario::buscarPorEmail($emailLogado);
   <div class="row">
     <?php include 'menu.php'; ?>
 
-    <!-- Conteúdo principal -->
     <div class="col-md-9 col-lg-10 p-4">
       <h4 class="mb-4">Configurações</h4>
 
       <div class="card shadow rounded-4 p-4">
-        <!-- Notificações -->
         <h5 class="mb-3">Notificações</h5>
         <form method="post" action="Crud/atualizar_configuracoes.php">
           <div class="form-check form-switch mb-3">
@@ -50,7 +48,6 @@ $usuario = Usuario::buscarPorEmail($emailLogado);
 
           <hr class="my-4">
 
-          <!-- Tema e idioma -->
           <h5 class="mb-3">Aparência e Idioma</h5>
           <div class="row g-3 mb-4">
             <div class="col-md-6">
@@ -71,7 +68,6 @@ $usuario = Usuario::buscarPorEmail($emailLogado);
 
           <hr class="my-4">
 
-          <!-- Privacidade -->
           <h5 class="mb-3">Privacidade</h5>
           <div class="form-check mb-3">
             <input class="form-check-input" type="checkbox" name="perfil_publico" id="perfil_publico" <?= ($usuario['perfil_publico'] ?? 1) ? 'checked' : '' ?>>

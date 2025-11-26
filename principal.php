@@ -20,8 +20,6 @@
 
   $refeicoes = Refeicao::listarTodasComAlimentos(); 
 
-  $refeicoes = Refeicao::listarTodasComAlimentos(); // já pega tudo do banco
-
 $consumido_calorias = 0;
 $consumido_proteina = 0;
 $consumido_carboidrato = 0;
@@ -99,7 +97,7 @@ $percent_gordura     = ($meta_gordura > 0) ? ($consumido_gordura / $meta_gordura
 
                   <div class="collapse" id="collapse<?= $tipo ?>">
                     <div class="table-responsive">
-                      <table class="table table-bordered table-sm table-striped w-100">
+                      <table id="tabela-<?= $tipo ?>" class="table table-bordered table-sm table-striped w-100">
                         <thead class="table-light">
                           <tr>
                             <th>Alimento</th>
@@ -112,29 +110,31 @@ $percent_gordura     = ($meta_gordura > 0) ? ($consumido_gordura / $meta_gordura
                         </thead>
                         <tbody>
                           <?php 
-                          // Lista apenas os alimentos dessa refeição
                           $temAlimentos = false;
                           foreach ($refeicoes as $r):
                               if ($r['tipo'] === $tipo):
                                   $temAlimentos = true;
                           ?>
-                          <tr>
-                            <td><?= htmlspecialchars($r['descricao']) ?></td>
-                            <td><?= round(($r['proteina'] + $r['carboidrato'] + $r['gordura'] + $r['calorias']) / 4) ?>g</td>
-                            <td><?= number_format($r['proteina'],1) ?></td>
-                            <td><?= number_format($r['carboidrato'],1) ?></td>
-                            <td><?= number_format($r['gordura'],1) ?></td>
-                            <td><?= number_format($r['calorias'],0) ?></td>
-                          </tr>
+                              <tr>
+                                  <td><?= htmlspecialchars($r['descricao']) ?></td>
+                                  <td><?= number_format ($r['quantidade']) ?>g</td>
+                                  <td><?= number_format($r['proteina'], 1) ?></td>
+                                  <td><?= number_format($r['carboidrato'], 1) ?></td>
+                                  <td><?= number_format($r['gordura'], 1) ?></td>
+                                  <td><?= number_format($r['calorias'], 0) ?></td>
+                              </tr>
                           <?php 
                               endif;
                           endforeach;
-                          if (!$temAlimentos): ?>
-                          <tr>
-                            <td colspan="6" class="text-center">Nenhum alimento cadastrado nesta refeição.</td>
-                          </tr>
+
+                          if (!$temAlimentos):
+                          ?>
+                              <tr>
+                                  <td colspan="6" class="text-center">Nenhum alimento cadastrado nesta refeição.</td>
+                              </tr>
                           <?php endif; ?>
-                        </tbody>
+                          </tbody>
+
                       </table>
                     </div>
                   </div>
@@ -230,7 +230,7 @@ $percent_gordura     = ($meta_gordura > 0) ? ($consumido_gordura / $meta_gordura
       </div> 
     </div> 
   </div> 
-
+                      
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

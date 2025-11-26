@@ -6,7 +6,7 @@ $alimentos = Alimento::listarTodos();
 <!-- CAFÉ DA MANHÃ -->
 <div class="modal fade" id="modalcafe_manha" tabindex="-1" aria-labelledby="modalcafe_manhaLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <form method="post" action="refeicao/salvar_refeicao.php">
+    <form method="post" action="refeicao/salvar_refeicao.php" id="form-cafe-manha" data-refeicao="cafe_manha">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Café da Manhã</h5>
@@ -39,7 +39,7 @@ $alimentos = Alimento::listarTodos();
 <!-- ALMOÇO -->
 <div class="modal fade" id="modalAlmoco" tabindex="-1" aria-labelledby="modalAlmocoLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <form method="post" action="refeicao/salvar_refeicao.php">
+    <form method="post" action="refeicao/salvar_refeicao.php" id="form-almoco" data-refeicao="almoco">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Almoço</h5>
@@ -72,7 +72,7 @@ $alimentos = Alimento::listarTodos();
 <!-- CAFÉ DA TARDE -->
 <div class="modal fade" id="modalcafe_tarde" tabindex="-1" aria-labelledby="modalcafe_tardeLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <form method="post" action="refeicao/salvar_refeicao.php">
+    <form method="post" action="refeicao/salvar_refeicao.php" id="form-cafe-tarde" data-refeicao="cafe_tarde">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Café da Tarde</h5>
@@ -105,7 +105,7 @@ $alimentos = Alimento::listarTodos();
 <!-- JANTA -->
 <div class="modal fade" id="modalJanta" tabindex="-1" aria-labelledby="modalJantaLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <form method="post" action="refeicao/salvar_refeicao.php">
+    <form method="post" action="refeicao/salvar_refeicao.php" id="form-janta" data-refeicao="janta">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Janta</h5>

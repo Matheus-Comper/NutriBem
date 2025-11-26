@@ -7,12 +7,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $senha = $_POST['senha'];
 
-    $usuario = Usuario::buscarPorEmail($email, $senha); // Você precisa implementar a função login na classe Usuario
+    $usuario = Usuario::buscarPorEmail($email, $senha); 
 
     if ($usuario) {
         session_start();
         $_SESSION['usuario_email'] = $usuario['email'];
-        header("Location: ../principal.php"); // página após login
+        header("Location: ../principal.php"); 
         exit;
     } else {
         $erro = "Email ou senha incorretos!";

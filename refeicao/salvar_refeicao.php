@@ -10,7 +10,7 @@ if (!isset($_SESSION['usuario_email'])) {
     exit;
 }
 
-// Recebe dados do formulário
+
 $usuario = Usuario::buscarPorEmail($_SESSION['usuario_email']);
 
 $tipo       = $_POST['refeicao'] ?? '';
@@ -21,23 +21,22 @@ if (!$tipo || !$alimentoId || !$quantidade) {
     die("Erro: Dados incompletos.");
 }
 
-// Busca o alimento
+
 $alimento = Alimento::buscarPorId($alimentoId);
 if (!$alimento) {
     die("Erro: Alimento não encontrado.");
 }
 
-// Calcula nutrientes com base na quantidade
+
 $fator = $quantidade / 100;
 $proteina    = $alimento['proteina'] * $fator;
 $carboidrato = $alimento['carboidrato'] * $fator;
 $gordura     = $alimento['gordura'] * $fator;
 $calorias    = $alimento['calorias'] * $fator;
 
-// Salva na tabela refeicao
+
 $refeicao = new Refeicao($tipo, $alimento['nome'], $proteina, $carboidrato, $gordura, $calorias, $quantidade);
 $refeicao->salvar();
 
-// Redireciona de volta para principal
 header("Location: ../principal.php");
 exit;
